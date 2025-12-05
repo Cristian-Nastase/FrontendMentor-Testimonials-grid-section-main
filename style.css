@@ -1,0 +1,261 @@
+:root
+{
+
+    --purple-50: hsl(260, 100%, 95%);
+    --purple-300: hsl(264, 82%, 80%);
+    --purple-500: hsl(263, 55%, 52%);
+
+    --white: hsl(0, 0%, 100%);
+    --grey-100: hsl(214, 17%, 92%);
+    --grey-200: hsl(0, 0%, 81%);
+    --grey-400: hsl(224, 10%, 45%);
+    --grey-500: hsl(217, 19%, 35%);
+    --dark-blue: hsl(219, 29%, 14%);
+    --black: hsl(0, 0%, 7%);
+
+    /* font sizes */
+
+    /* author */
+    --author-name-size: clamp(0.85rem, 0.2rem + 1vw, 2rem);
+
+    --header-size: clamp(1.475rem, 0.8rem + 1vw, 3rem);
+    --paragraph-size: clamp(1rem, 0.4rem + 1vw, 1.5rem);
+
+    /* spacing */
+    --spacing-200: 1.1rem;
+    --grid-gap: .5rem;
+
+    --margin-bottom-card: 1.5rem;
+}
+
+*
+{
+    margin: 0;
+    padding: 0;
+}
+
+body
+{
+    background-color: var(--grey-100);
+
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-flow: column;
+
+    height: 100vh;
+
+    overflow: scroll;
+
+    /* padding: 10vw; */
+}
+
+body > *
+{
+    font-family: "Barlow Semi Condensed", sans-serif;
+    color: var(--white);
+}
+
+
+main
+{
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content:space-evenly;
+}
+
+section.testimonial-card
+{
+    display: flex;
+    flex-flow: column;
+
+    justify-content: space-around;
+
+    padding: 2rem;
+    margin: 1rem;
+
+    text-align: left;
+
+    border-radius: 6px;
+
+    background-color: var(--purple-500);
+}
+
+section.testimonial-card > *
+{
+    margin-bottom: var(--margin-bottom-card);
+}
+
+div.author-info
+{
+    display: flex;
+    align-items: center;
+}
+
+div.author-info img.author-image
+{
+    margin-right: var(--spacing-200);
+    width: 2rem;
+    width: 2rem;
+
+    border-radius: 50%;
+    border: 1px solid var(--purple-300);
+}
+
+div.author-info h1.author-name
+{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    flex-flow: column;
+
+    font-weight: 500;
+    font-size: var(--author-name-size);
+}
+
+div.author-info h1.author-name::after
+{
+    flex-grow: 1 0 auto;
+    font-weight: 300;
+    font-size: calc(var(--author-name-size) - .2rem);
+    content: "Verified Graduate";
+}
+
+section.testimonial-card > h1.testimonial-header
+{
+    font-size: var(--header-size);
+    font-weight: 600;
+}
+
+section.testimonial-card > p.testimonial-paragraph
+{
+    font-size: var(--paragraph-size);
+}
+
+section#daniel
+{
+    grid-area: d;
+}
+
+section#jonathan
+{
+    grid-area: j;
+    background-color: var(--grey-500);    
+}
+
+section#jeanette
+{
+    grid-area: je;
+    background-color: var(--white);
+    color: var(--grey-500);
+}
+
+section#patrick
+{
+    grid-area: p;
+    background-color: var(--dark-blue);
+}
+
+section#kira
+{
+    grid-area: k;
+    background-color: var(--white);
+    color: var(--grey-500);
+}
+
+@media (min-width: 48rem)
+{
+    main
+    {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(4,1fr);
+        grid-template-areas: 
+        'd d'
+        'j je'
+        'p p'
+        'k k';
+
+        align-items: stretch;
+        row-gap: var(--grid-gap);
+        column-gap: var(--grid-gap);
+    }
+
+    section#daniel
+    {
+        position: relative;
+        overflow: hidden;
+    }
+
+    section#daniel::before 
+    {
+        content: url(images/bg-pattern-quotation.svg);
+        position: absolute;
+        scale: 1.5;
+        top: 5%;
+        right: 5rem;
+        z-index: 0;
+    }
+
+    section#daniel > *
+    {
+        position: relative;
+        z-index: 1;
+    }
+}
+
+@media (min-width: 60rem)
+{
+    
+    body
+    {
+        align-items: center;
+        justify-content: center;
+    }
+
+    section#daniel::before
+    {
+        scale:1;
+        top: 0%;
+        right: 15%;
+    }
+
+    div.author-info img.author-image
+    {
+        width: 1.5rem;
+        height: 1.5rem;
+    }
+
+    main
+    {
+        width: clamp(50vw, 100rem - 40vw ,80vw);
+
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+        grid-template-areas: 
+        'd d j k'
+        'je p p k';
+
+        --paragraph-size: .725rem;
+        --header-size: 1.05rem;
+        --author-name-size: .75rem;
+
+        --grid-gap: 0;
+
+        --margin-bottom-card: 0.4rem;
+    }
+
+    section.testimonial-card
+    {
+
+        box-shadow: 
+        25px 25px 20px 1px var(--grey-200);
+    }
+    
+    section#kira
+    {
+        --paragraph-size: 0.72rem;
+    }
+}
